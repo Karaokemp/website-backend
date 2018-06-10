@@ -8,6 +8,9 @@ var uploads = [
     {title:'Offsprinfg - Why don\'t you get a job?', url:'https://www.youtube.com/watch?v=LH-i8IvYIcg'}  
 ];
 
+app.get('/', function(req, res){
+    res.send("Karaokemp backend is in the house!");
+
 app.get('/uploads', function(req, res){
     res.json(uploads);
 });
