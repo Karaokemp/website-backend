@@ -9,10 +9,13 @@ var uploads = [
 ];
 
 app.get('/', function(req, res){
-    res.send("Karaokemp backend is in the house!");
+    res.send("Hi THERE!");
+
+});
 
 app.get('/uploads', function(req, res){
     res.json(uploads);
+
 });
 
 
