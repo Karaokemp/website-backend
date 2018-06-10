@@ -9,8 +9,7 @@ var uploads = [
 ];
 
 app.get('/', function(req, res){
-    res.send("Hi THERE!");
-
+    res.send("Karaokemp-backend is on air !");
 });
 
 app.get('/uploads', function(req, res){
