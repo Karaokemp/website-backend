@@ -1,7 +1,12 @@
 const PORT = process.env.PORT || 3000;
 
 const express = require('express');
+const cors = require('cors');
+
 const app = express();
+app.use(cors());
+
+
 
 var uploads = [
     {title:'Maddona - like a virgin', url:'https://www.youtube.com/watch?v=s__rX_WL100'},
