@@ -2,9 +2,11 @@ const PORT = process.env.PORT || 3000;
 
 const express = require('express');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 
 const app = express();
 app.use(cors());
+app.use(bodyParser.json());
 
 
 
@@ -19,7 +21,12 @@ app.get('/', function(req, res){
 
 app.get('/uploads', function(req, res){
     res.json(uploads);
+});
 
+app.post('/upload',function(req,res){
+
+    let upload = req.body;
+    uploads.push(upload);
 });
 
 
