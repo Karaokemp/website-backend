@@ -27,7 +27,7 @@ app.post('/upload',function(req,res){
 
     let upload = req.body;
     uploads.push(upload);
-    res.send(`added to uploads: ${JSON.stringify(upload)}`);
+    res.send(JSON.stringify(upload));
 
 });
 
