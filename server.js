@@ -10,10 +10,7 @@ app.use(bodyParser.json());
 
 
 
-var uploads = [
-    {title:'Maddona - like a virgin', url:'https://www.youtube.com/watch?v=s__rX_WL100'},
-    {title:'Offsprinfg - Why don\'t you get a job?', url:'https://www.youtube.com/watch?v=LH-i8IvYIcg'}  
-];
+var uploads = [];
 
 app.get('/', function(req, res){
     res.send("Karaokemp-backend is on air !");
