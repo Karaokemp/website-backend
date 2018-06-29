@@ -10,34 +10,38 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Retrieve
-var MongoClient = require('mongodb').MongoClient;
+const MongoClient = require('mongodb').MongoClient;
 
-// Connect to the db
-MongoClient.connect(MONGODB_URL, function(err, db) {
-  if(!err) {
-    console.log("connected to mongodb.");
-  }else{
-      console.error(err);
-  }
-});
+// Connect to mongo
 
 
-
-var uploads = [];
 
 app.get('/', function(req, res){
     res.send("Karaokemp-backend is on air !");
 });
 
 app.get('/uploads', function(req, res){
-    res.json(uploads);
+    
+    MongoClient.connect(MONGODB_URL, function(err, client) {
+    const db = client.db('heroku_907mrctp');
+    const uploads = db.collection('uploads');
+    
+      if(err) {
+        console.error(err);
+    }
+        uploads.find({}).toArray(function(err, docs) {
+        console.log("Found the following records");
+        console.log(docs)
+        res.json(docs);
+        client.close();
+      });
+});
 });
 
 app.post('/upload',function(req,res){
 
     let upload = req.body;
-    uploads.push(upload);
-    res.send(JSON.stringify(upload));
+    res.json(upload);
 
 });
 
