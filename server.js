@@ -41,8 +41,18 @@ app.get('/uploads', function(req, res){
 app.post('/upload',function(req,res){
 
     let upload = req.body;
-    res.json(upload);
+    MongoClient.connect(MONGODB_URL, function(err, client) {
+        const db = client.db('heroku_907mrctp');
+        const uploads = db.collection('uploads');
+        
+          if(err) {
+            console.error(err);
+        }
+            uploads.insert(upload);
+            client.close();
+            res.json(upload);
 
+    });
 });
 
 
