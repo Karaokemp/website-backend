@@ -21,6 +21,8 @@
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "express": "^4.16.3",
+    "megajs": "^0.14.1",
+    "megajs-cli": "^0.3.2",
     "mongodb": "^3.1.0"
   }
 }
