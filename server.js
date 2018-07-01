@@ -26,11 +26,12 @@ app.get('/uploads', function(req, res){
 app.post('/upload',function(req,res){
 
     let upload = req.body;
+    db.insert(upload,()=>{
+        res.json(upload);
+    });
     
 });
 
-
-
 app.listen(PORT, function() {
     console.log(`listenning on ${PORT}...`);
-  })
+  });

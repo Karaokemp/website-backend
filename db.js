@@ -18,6 +18,20 @@ exports.getUploads = function(cb){
         });
     }
 
+    exports.insert = function(newUpload,cb){
+
+        MongoClient.connect(MONGODB_URL, function(err, client) {
+            const db = client.db('heroku_907mrctp');
+            const uploads = db.collection('uploads');
+                uploads.insert(newUpload);
+                client.close();    
+
+                cb(err,newUpload);
+        });
+
+
+    }
+
 /* insert
 MongoClient.connect(MONGODB_URL, function(err, client) {
         const db = client.db('heroku_907mrctp');
