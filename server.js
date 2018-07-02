@@ -5,7 +5,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const db = require('./db');
-// const storage = require('./storage');
+const storage = require('./storage');
 
 const app = express();
 app.use(cors());
@@ -25,9 +25,13 @@ app.get('/uploads', function(req, res){
 
 app.post('/upload',function(req,res){
 
-    let upload = req.body;
-    db.insert(upload,()=>{
-        res.json(upload);
+    let song = req.body;
+    db.insert(song,()=>{
+        res.json(song);
+        storage.upload(song, ()=> {
+            console.log('uploaded!');
+
+        });
     });
     
 });
