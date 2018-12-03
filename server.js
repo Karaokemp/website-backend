@@ -28,8 +28,13 @@ app.post('/upload',function(req,res){
     let song = req.body;
     if(!song.title){
         getYoutubeTitle(song.id, function (err, title) {
-            if(!err){
+
+            if(!err&& title){
                 song.title = title;
+                console.log(`found title: ${title}`);
+            }else{
+                throw new Error('cannot get title');
+                
             }
           });
     }
