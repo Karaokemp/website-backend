@@ -3,8 +3,7 @@ const PORT = process.env.PORT || 3000;
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const getYoutubeTitle = require('get-youtube-title');
-
+const fetchVideoInfo = require('youtube-info');
 
 const db = require('./db');
 const app = express();
@@ -23,21 +22,23 @@ app.get('/uploads', function(req, res){
     
 });
 
+app.get('/info', function(req, res){
+    videoId = req.query.id
+
+    fetchVideoInfo(videoId).then(function (videoInfo) {
+        let video = {id: videoInfo.videoId, title: videoInfo.title,img: videoInfo.thumbnailUrl,duration:videoInfo.duration};
+        res.json(video);
+    
+});
+
+
+
+});
+
 app.post('/upload',function(req,res){
 
     let song = req.body;
-    if(!song.title){
-        getYoutubeTitle(song.id, function (err, title) {
 
-            if(!err&& title){
-                song.title = title;
-                console.log(`found title: ${title}`);
-            }else{
-                throw new Error('cannot get title');
-                
-            }
-          });
-    }
     db.insert(song,()=>{
         res.json(song);
     });
